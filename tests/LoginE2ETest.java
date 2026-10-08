@@ -343,7 +343,21 @@ public class LoginE2ETest {
         assertTrue(currentUrl.contains("Login") || currentUrl.contains("login"),
                 "URL phai chua 'Login' sau khi dang nhap that bai, URL hien tai: " + currentUrl);
     }
+
+    // ==========================================
+    // TC20: Dang nhap voi ky tu tab va newline
+    // ==========================================
+    @Test
+    @Order(20)
+    @DisplayName("TC20 - Dang nhap voi ky tu tab va xuong dong trong username")
+    void testLoginWithTabAndNewlineCharacters() {
+        loginPage.loginExpectingFailure("admin\\t\\n", "password\\t\\n");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap voi ky tu dac biet tab/newline");
+    }
 }
+
 
 
 
