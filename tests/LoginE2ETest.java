@@ -178,5 +178,30 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "He thong phai chong duoc SQL Injection: " + sqlInjection);
     }
+
+    // ==========================================
+    // TC09: Dang nhap voi XSS (Cross-Site Scripting)
+    // ==========================================
+    @ParameterizedTest
+    @Order(9)
+    @DisplayName("TC09 - Dang nhap voi XSS trong username")
+    @ValueSource(strings = {
+            "<script>alert('XSS')</script>",
+            "<img src=x onerror=alert('XSS')>",
+            "<svg/onload=alert('XSS')>",
+            "javascript:alert('XSS')",
+            "<iframe src='javascript:alert(1)'>"
+    })
+    void testLoginWithXSSInUsername(String xssPayload) {
+        loginPage.loginExpectingFailure(xssPayload, "password123");
+
+        // Kiem tra khong co alert XSS xuat hien
+        assertFalse(loginPage.isAlertPresent(),
+                "He thong phai chong duoc XSS: " + xssPayload);
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap sau khi nhap XSS");
+    }
 }
+
 
