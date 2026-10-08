@@ -111,7 +111,21 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi tai khoan khong ton tai");
     }
+
+    // ==========================================
+    // TC05: Dang nhap voi mat khau sai
+    // ==========================================
+    @Test
+    @Order(5)
+    @DisplayName("TC05 - Dang nhap voi username hop le nhung mat khau sai")
+    void testLoginWithWrongPassword() {
+        loginPage.loginExpectingFailure("admin", "saimatkhau123456");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap khi mat khau sai");
+    }
 }
+
 
 
 
