@@ -1,0 +1,8 @@
+target/
+.maven/
+.backup_tests/
+.idea/
+*.iml
+.vscode/
+*.dumpstream
+*.log
