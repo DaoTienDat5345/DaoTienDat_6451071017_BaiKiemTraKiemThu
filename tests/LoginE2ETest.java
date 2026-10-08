@@ -329,7 +329,22 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap voi password co khoang trang thua");
     }
+
+    // ==========================================
+    // TC19: Kiem tra URL sau khi dang nhap that bai
+    // ==========================================
+    @Test
+    @Order(19)
+    @DisplayName("TC19 - Kiem tra URL khong thay doi sau khi dang nhap that bai")
+    void testURLAfterFailedLogin() {
+        loginPage.loginExpectingFailure("wronguser", "wrongpass");
+
+        String currentUrl = loginPage.getCurrentUrl();
+        assertTrue(currentUrl.contains("Login") || currentUrl.contains("login"),
+                "URL phai chua 'Login' sau khi dang nhap that bai, URL hien tai: " + currentUrl);
+    }
 }
+
 
 
 
