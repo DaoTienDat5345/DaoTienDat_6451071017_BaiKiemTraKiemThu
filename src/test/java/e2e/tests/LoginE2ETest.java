@@ -205,6 +205,20 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap sau khi nhap XSS");
     }
+
+    // ==========================================
+    // TC10: Dang nhap voi khoang trang (spaces)
+    // ==========================================
+    @Test
+    @Order(10)
+    @DisplayName("TC10 - Dang nhap voi username va password chi la khoang trang")
+    void testLoginWithOnlySpaces() {
+        loginPage.loginExpectingFailure("     ", "     ");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap khi chi nhap khoang trang");
+    }
 }
+
 
 
