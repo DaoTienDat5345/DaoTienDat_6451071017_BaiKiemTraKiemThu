@@ -124,7 +124,21 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi mat khau sai");
     }
+
+    // ==========================================
+    // TC06: Dang nhap voi ca username va password sai
+    // ==========================================
+    @Test
+    @Order(6)
+    @DisplayName("TC06 - Dang nhap voi ca username va password deu sai")
+    void testLoginWithBothWrongCredentials() {
+        loginPage.loginExpectingFailure("usersai123", "passsai456");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap khi ca hai deu sai");
+    }
 }
+
 
 
 
