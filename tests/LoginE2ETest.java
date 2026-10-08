@@ -272,7 +272,28 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "He thong phai van hoat dong sau nhieu lan dang nhap sai");
     }
+
+    // ==========================================
+    // TC15: Kiem tra giao dien trang Login
+    // ==========================================
+    @Test
+    @Order(15)
+    @DisplayName("TC15 - Kiem tra cac thanh phan giao dien trang dang nhap")
+    void testLoginPageUIElements() {
+        assertTrue(loginPage.isUsernameFieldDisplayed(),
+                "Truong username phai hien thi");
+        assertTrue(loginPage.isPasswordFieldDisplayed(),
+                "Truong password phai hien thi");
+        assertTrue(loginPage.isLoginButtonDisplayed(),
+                "Nut dang nhap phai hien thi");
+
+        assertEquals("Tên đăng nhập", loginPage.getUsernamePlaceholder(),
+                "Placeholder cua username phai la 'Tên đăng nhập'");
+        assertEquals("Mật khẩu", loginPage.getPasswordPlaceholder(),
+                "Placeholder cua password phai la 'Mật khẩu'");
+    }
 }
+
 
 
 
