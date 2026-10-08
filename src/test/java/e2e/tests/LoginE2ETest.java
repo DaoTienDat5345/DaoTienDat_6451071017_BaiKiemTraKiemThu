@@ -98,6 +98,20 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi password rong");
     }
+
+    // ==========================================
+    // TC04: Dang nhap voi tai khoan khong ton tai
+    // ==========================================
+    @Test
+    @Order(4)
+    @DisplayName("TC04 - Dang nhap voi tai khoan khong ton tai trong he thong")
+    void testLoginWithNonExistentAccount() {
+        loginPage.loginExpectingFailure("taikhoankhongtontai999", "matkhau123");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap khi tai khoan khong ton tai");
+    }
 }
+
 
 
