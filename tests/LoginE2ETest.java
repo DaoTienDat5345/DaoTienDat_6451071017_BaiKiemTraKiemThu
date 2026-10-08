@@ -292,7 +292,19 @@ public class LoginE2ETest {
         assertEquals("Mật khẩu", loginPage.getPasswordPlaceholder(),
                 "Placeholder cua password phai la 'Mật khẩu'");
     }
+
+    // ==========================================
+    // TC16: Kiem tra title trang Login
+    // ==========================================
+    @Test
+    @Order(16)
+    @DisplayName("TC16 - Kiem tra title cua trang dang nhap")
+    void testLoginPageTitle() {
+        assertEquals("Đăng nhập", loginPage.getPageTitle(),
+                "Title cua trang phai la 'Đăng nhập'");
+    }
 }
+
 
 
 
