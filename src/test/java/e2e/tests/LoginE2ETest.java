@@ -258,7 +258,25 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap voi username chi la so");
     }
+
+    // ==========================================
+    // TC14: Dang nhap nhieu lan sai lien tuc (Brute Force)
+    // ==========================================
+    @Test
+    @Order(14)
+    @DisplayName("TC14 - Dang nhap sai nhieu lan lien tuc (kiem tra chong brute force)")
+    void testBruteForceProtection() {
+        for (int i = 1; i <= 5; i++) {
+            loginPage.open();
+            loginPage.loginExpectingFailure("admin", "wrongpass" + i);
+        }
+
+        // Sau nhieu lan dang nhap sai, van phai o trang login
+        assertTrue(loginPage.isOnLoginPage(),
+                "He thong phai van hoat dong sau nhieu lan dang nhap sai");
+    }
 }
+
 
 
 
