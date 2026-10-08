@@ -306,7 +306,21 @@ public class LoginE2ETest {
         assertEquals("Đăng nhập", loginPage.getPageTitle(),
                 "Title cua trang phai la 'Đăng nhập'");
     }
+
+    // ==========================================
+    // TC17: Dang nhap voi username co khoang trang dau/cuoi
+    // ==========================================
+    @Test
+    @Order(17)
+    @DisplayName("TC17 - Dang nhap voi username co khoang trang o dau va cuoi")
+    void testLoginWithLeadingTrailingSpaces() {
+        loginPage.loginExpectingFailure("  admin  ", "password123");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap voi username co khoang trang thua");
+    }
 }
+
 
 
 
