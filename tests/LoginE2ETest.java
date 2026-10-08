@@ -215,7 +215,22 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi chi nhap khoang trang");
     }
+
+    // ==========================================
+    // TC11: Dang nhap voi chuoi qua dai
+    // ==========================================
+    @Test
+    @Order(11)
+    @DisplayName("TC11 - Dang nhap voi username va password qua dai (500 ky tu)")
+    void testLoginWithExtremelyLongInput() {
+        String longString = "a".repeat(500);
+        loginPage.loginExpectingFailure(longString, longString);
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap khi nhap chuoi qua dai");
+    }
 }
+
 
 
 
