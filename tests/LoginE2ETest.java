@@ -156,4 +156,27 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap voi ky tu dac biet: " + specialUsername);
     }
+
+    // ==========================================
+    // TC08: Dang nhap voi SQL Injection
+    // ==========================================
+    @ParameterizedTest
+    @Order(8)
+    @DisplayName("TC08 - Dang nhap voi SQL Injection trong username")
+    @ValueSource(strings = {
+            "' OR '1'='1",
+            "' OR '1'='1' --",
+            "' OR '1'='1' /*",
+            "admin'--",
+            "' UNION SELECT * FROM users --",
+            "1'; DROP TABLE users; --",
+            "' OR 1=1 --"
+    })
+    void testLoginWithSQLInjection(String sqlInjection) {
+        loginPage.loginExpectingFailure(sqlInjection, "password123");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "He thong phai chong duoc SQL Injection: " + sqlInjection);
+    }
 }
+
