@@ -245,7 +245,21 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi nhap ky tu Unicode");
     }
+
+    // ==========================================
+    // TC13: Dang nhap voi username la so
+    // ==========================================
+    @Test
+    @Order(13)
+    @DisplayName("TC13 - Dang nhap voi username chi la so")
+    void testLoginWithNumericUsername() {
+        loginPage.loginExpectingFailure("123456789", "password123");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap voi username chi la so");
+    }
 }
+
 
 
 
