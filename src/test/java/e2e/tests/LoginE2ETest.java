@@ -2,6 +2,8 @@ package e2e.tests;
 
 import e2e.pages.LoginPage;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -137,9 +139,24 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi ca hai deu sai");
     }
+
+    // ==========================================
+    // TC07: Dang nhap voi ky tu dac biet trong username
+    // ==========================================
+    @ParameterizedTest
+    @Order(7)
+    @DisplayName("TC07 - Dang nhap voi ky tu dac biet trong username")
+    @ValueSource(strings = {
+            "!@#$%^&*()",
+            "<>?/\\|{}[]",
+            "user@#$name",
+            "user name!",
+            "~`+=;:'\""
+    })
+    void testLoginWithSpecialCharactersInUsername(String specialUsername) {
+        loginPage.loginExpectingFailure(specialUsername, "password123");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap voi ky tu dac biet: " + specialUsername);
+    }
 }
-
-
-
-
-
