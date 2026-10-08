@@ -81,5 +81,20 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi username rong");
     }
+
+    // ==========================================
+    // TC03: Dang nhap voi password rong, co username
+    // ==========================================
+    @Test
+    @Order(3)
+    @DisplayName("TC03 - Dang nhap voi password de trong, chi nhap username")
+    void testLoginWithEmptyPassword() {
+        loginPage.enterUsername("testuser");
+        loginPage.clickLogin();
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap khi password rong");
+    }
 }
+
 
