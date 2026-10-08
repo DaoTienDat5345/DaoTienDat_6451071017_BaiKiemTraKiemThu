@@ -232,7 +232,21 @@ public class LoginE2ETest {
         assertTrue(loginPage.isOnLoginPage(),
                 "Phai van o trang dang nhap khi nhap chuoi qua dai");
     }
+
+    // ==========================================
+    // TC12: Dang nhap voi ky tu Unicode / Tieng Viet
+    // ==========================================
+    @Test
+    @Order(12)
+    @DisplayName("TC12 - Dang nhap voi ky tu Unicode va tieng Viet co dau")
+    void testLoginWithUnicodeCharacters() {
+        loginPage.loginExpectingFailure("nguyễnvănA", "mậtkhẩu123");
+
+        assertTrue(loginPage.isOnLoginPage(),
+                "Phai van o trang dang nhap khi nhap ky tu Unicode");
+    }
 }
+
 
 
 
